@@ -1,9 +1,13 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-from dotenv import load_dotenv
 import os
 
-load_dotenv()
+# Optional dotenv loading; if python-dotenv is not installed, skip.
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:  # pragma: no cover
+    pass
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 if not DATABASE_URL:

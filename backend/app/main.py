@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.api.search_api import router as search_router
+from app.api.summarize_api import router as summarize_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Research Gap Analyzer API")
@@ -23,3 +24,4 @@ def health_check():
 
 # Register API routers
 app.include_router(search_router)
+app.include_router(summarize_router)

@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from app.api.search_api import router as search_router
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Research Gap Analyzer API")
@@ -19,3 +20,6 @@ def read_root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+
+# Register API routers
+app.include_router(search_router)

@@ -12,3 +12,4 @@ langchain-ollama
 scikit-learn
 pandas
 numpy
+pymupdf

@@ -26,5 +26,16 @@ def fetch_papers(query="artificial intelligence", max_results=5):
         abstract = abstract_elem.text.strip() if abstract_elem is not None and abstract_elem.text else ''
         published_elem = entry.find('{http://www.w3.org/2005/Atom}published')
         published = published_elem.text.strip() if published_elem is not None and published_elem.text else ''
-        papers.append({"title": title, "abstract": abstract, "published": published})
+        
+        pdf_url = ""
+        for link in entry.findall('{http://www.w3.org/2005/Atom}link'):
+            if link.attrib.get("title") == "pdf":
+                pdf_url = link.attrib["href"]
+
+        papers.append({
+            "title": title,
+            "abstract": abstract,
+            "published": published,
+            "pdf_url": pdf_url
+        })
     return papers

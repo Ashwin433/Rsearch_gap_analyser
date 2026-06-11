@@ -13,7 +13,8 @@ for paper in papers:
     new_paper = ResearchPaper(
         title=paper["title"],
         abstract=paper["abstract"],
-        published=paper["published"]
+        published=paper["published"],
+        pdf_url=paper.get("pdf_url", "")
     )
     db.add(new_paper)
 

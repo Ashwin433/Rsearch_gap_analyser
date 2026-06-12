@@ -11,3 +11,4 @@ class ResearchPaper(Base):
     abstract = Column(Text)
     published = Column(String)
     pdf_url = Column(String)
+    full_text = Column(Text)

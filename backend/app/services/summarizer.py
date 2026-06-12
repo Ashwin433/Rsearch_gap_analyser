@@ -25,3 +25,29 @@ def generate_summary(text: str) -> str:
     # Ensure we always return a string
     result = response if isinstance(response, str) else getattr(response, "content", str(response))
     return str(result)
+
+
+def summarize(text: str) -> str:
+    """Summarize a full paper text into: Objective, Methodology, Results, and Contributions.
+
+    Args:
+        text (str): The full text of the paper.
+
+    Returns:
+        str: The LLM-generated structured summary.
+    """
+    prompt = f"""
+    Summarize this paper in:
+    
+    1. Objective
+    2. Methodology
+    3. Results
+    4. Contributions
+    
+    Paper:
+    {text[:5000]}
+    """
+    response = llm.invoke(prompt)
+    result = response if isinstance(response, str) else getattr(response, "content", str(response))
+    return str(result)
+
